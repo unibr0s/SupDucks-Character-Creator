@@ -5,6 +5,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column; /* Stack header and content vertically */
+    transform: scale(0.9); /* Scale down the entire page to 90% of its size */
+    transform-origin: top; /* Ensure scaling starts from the top of the page */
 }
 
 /* Character Builder Container */
@@ -20,7 +22,7 @@ body {
     flex: 1; /* Take up space on the left side */
     max-width: 100%; /* Optional: Limit the width for better readability */
     max-height: 100%;
-    background-color: #f8f9fa; /* Optional: Light background color */
+    background-color: transparent; /* Optional: Light background color */
     overflow-y: auto; /* Enable scrolling if content overflows */
     margin: auto; /* Center the entire tabs container vertically and horizontally */
     display: flex;
@@ -28,16 +30,6 @@ body {
     align-items: center; /* Center align tabs horizontally */
     justify-content: center; /* Center align tabs vertically */
     border-radius: 10px; /* Add rounded corners */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow for separation */
-}
-
-/* Character Preview Container */
-#character-preview-container {
-    display: flex;
-    flex-direction: column; /* Stack the preview and button vertically */
-    align-items: center; /* Center align the button horizontally */
-    justify-content: center;
-    margin-top: 20px; /* Add some spacing above the container */
 }
 
 /* Right Section: Character Preview */
@@ -69,8 +61,6 @@ body {
 
 /* Export Button */
 .export-button {
-    margin-top: 15px; /* Add space between the button and preview box */
-    padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
     color: white;
@@ -176,11 +166,12 @@ button {
 /* Style the grid container */
 .trait-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ensure consistent size */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ensure consistent size */
     gap: 5px; /* Add space between grid items */
     justify-items: center; /* Center items in the grid */
     max-width: 900px; /* Limit the grid width for better readability */
     margin: 0 auto; /* Center the grid container */
+    cursor: pointer;
 }
 
 /* Style the images */
@@ -209,14 +200,13 @@ button {
 /* Header Styling */
 .logo-container {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column; /* Stack logo and title vertically */
     align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-    text-align: center; /* Center-align text */
-    padding: 20px; /* Add padding inside the header */
-    background-color: white; /* Optional: background color */
-    border-bottom: 2px solid #ddd; /* Optional: border for separation */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the header */
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Header Styling */
@@ -225,10 +215,8 @@ button {
     flex-direction: column; /* Stack logo, title, and button vertically */
     align-items: center; /* Center all items horizontally */
     justify-content: center; /* Center all items vertically */
-    padding: 20px 0; /* Add vertical padding */
+    padding: 10px 0; /* Add vertical padding */
     background-color: white;
-    border-bottom: 2px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
     text-align: center; /* Center-align text */
 }
 
@@ -237,6 +225,7 @@ button {
     height: 80px; /* Adjust logo size */
     width: auto; /* Maintain aspect ratio */
     margin-bottom: 0px; /* Add space below the logo */
+    margin-top: 15px;
 }
 
 /* Heading Styling */
@@ -246,11 +235,17 @@ button {
     margin-bottom: 0px; /* Add space below the heading */
 }
 
+
+/* Style for the button group */
+.button-group {
+    display: flex; /* Arrange buttons side by side */
+    gap: 25px; /* Add space between the buttons */
+}
+
 /* Button Styling */
 #randomize {
-    padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff; /* Blue button */
+    background-color: red; /* Blue button */
     color: white; /* White text */
     border: none; /* Remove border */
     border-radius: 5px; /* Add rounded corners */
@@ -259,5 +254,24 @@ button {
 }
 
 #randomize:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: darkred; /* Darker blue on hover */
+}
+
+/* Footer Styling */
+.site-footer {
+    text-align: center; /* Center the text */
+    padding: 0px 10px; /* Add vertical padding */
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Darker text color */
+}
+
+.site-footer a {
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Blue text for the link */
+    font-weight: bold; /* Bold the link */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.site-footer a:hover {
+    color: #0056b3; /* Darker blue on hover */
 }

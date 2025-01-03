@@ -24,10 +24,9 @@
     
         #trait-tabs {
             flex: 1; /* Take up half the screen */
-            background-color: #f8f9fa;
+            background-color: transparent;
             overflow-y: auto; /* Enable scrolling if content overflows */
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
         }
     
         #character-preview {
@@ -61,16 +60,19 @@
         button {
             padding: 10px 20px;
             font-size: 16px;
-            margin-top: 20px;
+            margin-top: 0px;
         }
     </style>
     
 </head>
 <body>
-    <header class="logo-container">
+    <header class="header-container">
         <img src="assets/Design_Elements/SupDucks Logo.png" alt="SupDucks Logo" id="site-logo">
         <h2>Character Builder</h2>
-        <button id="randomize">Randomize</button>
+        <div class="button-group">
+            <button id="randomize">Randomize</button>
+            <button id="export" class="export-button">Export Duck</button>
+        </div>
     </header>
     <div id="character-builder">
 
@@ -297,7 +299,6 @@
             <img id="mouth" class="layer" alt="Mouth">
             <img id="eyes" class="layer" alt="Eyes">
         </div>
-        <button id="export" class="export-button">Export Creation</button>
     </div>
 
         
@@ -509,7 +510,11 @@
             </select>
         </div> -->
         
-
+    <footer class="site-footer">
+        <p>
+            Built by <a href="https://unibros.xyz" target="_blank">Unibros®</a>
+        </p>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -221,24 +221,23 @@ button {
 
 /* Logo Styling */
 #site-logo {
-    height: 80px; /* Adjust logo size */
+    height: 75px; /* Adjust logo size */
     width: auto; /* Maintain aspect ratio */
-    margin-bottom: 0px; /* Add space below the logo */
-    margin-top: 15px;
 }
 
 /* Heading Styling */
 .logo-container h2 {
     font-size: 20px; /* Adjust font size for the heading */
     color: #333; /* Optional: change color */
-    margin-bottom: 0px; /* Add space below the heading */
+    margin: 0; /* Remove extra margin */
 }
 
 
-/* Style for the button group */
+/* Button Group Styling */
 .button-group {
-    display: flex; /* Arrange buttons side by side */
-    gap: 25px; /* Add space between the buttons */
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px; /* Add small space above the buttons */
 }
 
 /* Button Styling */
@@ -258,21 +257,24 @@ button {
 
 /* Footer Styling */
 .site-footer {
-    text-align: center; /* Center the text */
-    padding: 0px 10px; /* Add vertical padding */
+    display: flex; /* Arrange items horizontally */
+    justify-content: center; /* Center all content horizontally */
+    align-items: center; /* Center all content vertically */
+    padding: 10px 50px; /* Add vertical padding */
     font-size: 14px; /* Adjust font size */
     color: #333; /* Darker text color */
+    gap: 0px; /* Space between "Built by Unibros" and the icon */
 }
 
 .site-footer a {
     text-decoration: none; /* Remove underline */
-    color: #007bff; /* Blue text for the link */
+    color: red; /* Red text for the link */
     font-weight: bold; /* Bold the link */
     transition: color 0.3s ease; /* Smooth hover effect */
 }
 
 .site-footer a:hover {
-    color: #0056b3; /* Darker blue on hover */
+    color: darkred; /* Darker red on hover */
 }
 
 .trait-option[alt="None"] {
@@ -286,4 +288,60 @@ button {
 .layer:not([src]) {
     visibility: hidden; /* Make it invisible */
     display: none; /* Remove it from the layout */
+}
+
+/* Social Media Styling */
+.social-media {
+    display: flex;
+    justify-content: center; /* Center icons horizontally */
+    gap: 10px; /* Space between icons */
+}
+
+/* Social Media Icon Styling */
+.social-icon {
+    width: 24px; /* Icon size */
+    height: 24px; /* Icon size */
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+}
+
+/* Header Container Styling */
+.logo-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center all elements horizontally */
+    text-align: center;
+    padding: 10px 0; /* Add vertical padding inside the header */
+    gap: 8px; /* Small gap between elements */
+}
+
+.social-footer {
+    display: flex; /* Arrange icon next to text */
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icon {
+    width: 24px; /* Icon size */
+    height: 24px; /* Icon size */
+    margin-left: 10px; /* Space between text and icon */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+.footer-icon:hover {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+}
+
+/* Main content area to push the footer down */
+main {
+    flex: 1; /* This makes the main content take up all available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers the content vertically */
+    align-items: center; /* Centers the content horizontally */
 }

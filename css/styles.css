@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack header and content vertically */
+}
+
+/* Character Builder Container */
+#character-builder {
+    display: flex;
+    flex-direction: row; /* Left and right split */
+    height: calc(100vh - 150px); /* Subtract header height */
+    width: 100%; /* Full width */
+}
+
+/* Left Section: Trait Tabs */
+#trait-tabs {
+    flex: 1; /* Take up space on the left side */
+    max-width: 100%; /* Optional: Limit the width for better readability */
+    max-height: 100%;
+    background-color: #f8f9fa; /* Optional: Light background color */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    margin: auto; /* Center the entire tabs container vertically and horizontally */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align tabs horizontally */
+    justify-content: center; /* Center align tabs vertically */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow for separation */
+}
+
+/* Character Preview Container */
+#character-preview-container {
+    display: flex;
+    flex-direction: column; /* Stack the preview and button vertically */
+    align-items: center; /* Center align the button horizontally */
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing above the container */
+}
+
+/* Right Section: Character Preview */
+#character-preview {
+    flex: 1; /* Take up the right side */
+    max-width: 500px; /* Set a maximum width */
+    max-height: 500px; /* Set a maximum height */
+    width: 100%; /* Ensure it's responsive */
+    aspect-ratio: 1 / 1; /* Force the box to be a square */
+    background-color: lightgray; /* Optional: Background color */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    position: relative; /* Positioning for layered images */
+    margin: 20px; /* Add spacing around the preview */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow */
+}
+
+
+/* Character Preview Layers (Images) */
+#character-preview img.layer {
+    position: absolute; /* Stack layers on top of each other */
+    width: 100%; /* Make images take the full width of the box */
+    height: 100%; /* Make images take the full height of the box */
+    object-fit: cover; /* Ensure the image covers the box while maintaining proportions */
+    border-radius: 10px; /* Optional: Match preview box rounded corners */
+}
+
+/* Export Button */
+.export-button {
+    margin-top: 15px; /* Add space between the button and preview box */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.export-button:hover {
+    background-color: #0056b3;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Scale to fit the display box */
+    height: 100%; /* Maintain proportions */
+    object-fit: contain; /* Ensure images fit inside the box without distortion */
+}
+
+.layer:not([src]) {
+    visibility: hidden; /* Hide images without a src attribute */
+}
+
+.layer[src] {
+    visibility: visible; /* Show images with a valid src */
+}
+
+.trait-selector {
+    margin: 10px 0;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Tab Buttons */
+.tab-buttons {
+    display: flex;
+    justify-content: center; /* Center align buttons within the container */
+    flex-wrap: wrap; /* Wrap buttons to the next line if necessary */
+    gap: 10px; /* Add spacing between buttons */
+    width: 100%; /* Ensure buttons take full width */
+    margin-top: 10px; /* Add some space at the top */
+}
+
+/* Tab Content */
+.tab-content {
+    width: 100%; /* Match the width of the container */
+    margin-top: 20px; /* Add space between the buttons and content */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align trait grids */
+}
+
+/* Optional Styling for Tab Buttons */
+.tab-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Trait Grid */
+/* Ensure the grid layout remains consistent */
+/* Style the grid that contains trait options */
+/* Style the grid container */
+.trait-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ensure consistent size */
+    gap: 5px; /* Add space between grid items */
+    justify-items: center; /* Center items in the grid */
+    max-width: 900px; /* Limit the grid width for better readability */
+    margin: 0 auto; /* Center the grid container */
+}
+
+/* Style the images */
+.trait-option {
+    width: 100px; /* Ensure consistent image width */
+    height: 100px; /* Ensure consistent image height */
+    object-fit: cover; /* Prevent images from stretching */
+    border-radius: 8px; /* Optional: Rounded corners */
+    border: 2px solid transparent; /* Optional border for better visuals */
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* Optional hover effect for images */
+.trait-option:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    border-color: #007bff; /* Highlight border on hover */
+}
+
+/* Style the text below images */
+.trait-option p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Header Styling */
+.logo-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: center; /* Center-align text */
+    padding: 20px; /* Add padding inside the header */
+    background-color: white; /* Optional: background color */
+    border-bottom: 2px solid #ddd; /* Optional: border for separation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the header */
+}
+
+/* Header Styling */
+.header-container {
+    display: flex;
+    flex-direction: column; /* Stack logo, title, and button vertically */
+    align-items: center; /* Center all items horizontally */
+    justify-content: center; /* Center all items vertically */
+    padding: 20px 0; /* Add vertical padding */
+    background-color: white;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
+    text-align: center; /* Center-align text */
+}
+
+/* Logo Styling */
+#site-logo {
+    height: 80px; /* Adjust logo size */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 0px; /* Add space below the logo */
+}
+
+/* Heading Styling */
+.logo-container h2 {
+    font-size: 20px; /* Adjust font size for the heading */
+    color: #333; /* Optional: change color */
+    margin-bottom: 0px; /* Add space below the heading */
+}
+
+/* Button Styling */
+#randomize {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Blue button */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+#randomize:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

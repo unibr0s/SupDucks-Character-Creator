@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupDucks Character Builder</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Stack header and content vertically */
+        }
+    
+        #character-builder {
+            display: flex;
+            flex-direction: row; /* Horizontal split */
+            height: calc(100vh - 100px); /* Full height minus logo/header */
+            width: 100%; /* Full width of the screen */
+        }
+    
+        #trait-tabs {
+            flex: 1; /* Take up half the screen */
+            background-color: #f8f9fa;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        }
+    
+        #character-preview {
+            flex: 1; /* Take up half the screen */
+            height: 100%;
+            background-color: lightgray;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure proportional scaling */
+        }
+    
+        .trait-selector {
+            margin: 10px 0;
+        }
+    
+        select {
+            padding: 5px;
+            font-size: 16px;
+        }
+    
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="logo-container">
+        <img src="assets/Design_Elements/SupDucks Logo.png" alt="SupDucks Logo" id="site-logo">
+        <h2>Character Builder</h2>
+        <button id="randomize">Randomize</button>
+    </header>
+    <div id="character-builder">
+
+          <!-- Left Section: Trait Tabs -->
+        <div id="trait-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="background-tab">Background</button>
+                <button class="tab-button" data-tab="body-tab">Body</button>
+                <button class="tab-button" data-tab="clothing-tab">Clothing</button>
+                <button class="tab-button" data-tab="hat-tab">Hat</button>
+                <button class="tab-button" data-tab="mouth-tab">Mouth</button>
+                <button class="tab-button" data-tab="eyes-tab">Eyes</button>
+            </div>
+        
+            <div class="tab-content">
+                <!-- Background Tab -->
+                <div class="tab-panel active" id="background-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Background/Ash.png" data-layer="background" data-value="assets/background/Ash.png" alt="Ash">
+                        <img class="trait-option" src="assets/Background/Blue.png" data-layer="background" data-value="assets/background/Blue.png" alt="Blue">
+                        <img class="trait-option" src="assets/Background/Boardwalk.png" data-layer="background" data-value="assets/background/Boardwalk.png" alt="Boardwalk">
+                        <img class="trait-option" src="assets/Background/BubbleGum.png" data-layer="background" data-value="assets/background/BubbleGum.png" alt="BubbleGum">
+                        <img class="trait-option" src="assets/Background/Candy.png" data-layer="background" data-value="assets/background/Candy.png" alt="Candy">
+                        <img class="trait-option" src="assets/Background/DeepPurple.png" data-layer="background" data-value="assets/background/DeepPurple.png" alt="DeepPurple">
+                        <img class="trait-option" src="assets/Background/Green.png" data-layer="background" data-value="assets/background/Green.png" alt="Green">
+                        <img class="trait-option" src="assets/Background/PaintSplatter.png" data-layer="background" data-value="assets/background/PaintSplatter.png" alt="PaintSplatter">
+                        <img class="trait-option" src="assets/Background/Pink.png" data-layer="background" data-value="assets/background/Pink.png" alt="Pink">
+                        <img class="trait-option" src="assets/Background/Sky.png" data-layer="background" data-value="assets/background/Sky.png" alt="Sky">
+                        <img class="trait-option" src="assets/Background/Sunset.png" data-layer="background" data-value="assets/background/Sunset.png" alt="Sunset">
+                        <img class="trait-option" src="assets/Background/TieDye.png" data-layer="background" data-value="assets/background/TieDye.png" alt="TieDye">
+                        <img class="trait-option" src="assets/Background/TieDyeNight.png" data-layer="background" data-value="assets/background/TieDyeNight.png" alt="TieDyeNight">
+                        <img class="trait-option" src="assets/Background/Toxic.png" data-layer="background" data-value="assets/background/Toxic.png" alt="Toxic">
+                        <img class="trait-option" src="assets/Background/YellowOrange.png" data-layer="background" data-value="assets/background/YellowOrange.png" alt="YellowOrange">
+                    </div>
+                </div>
+        
+                <!-- Body Tab -->
+                <div class="tab-panel" id="body-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Body/2Toned.png" data-layer="body" data-value="assets/body/2Toned.png" alt="2Toned">
+                        <img class="trait-option" src="assets/Body/Blue.png" data-layer="body" data-value="assets/body/Blue.png" alt="Blue">
+                        <img class="trait-option" src="assets/Body/ButterMilk.png" data-layer="body" data-value="assets/body/ButterMilk.png" alt="ButterMilk">
+                        <img class="trait-option" src="assets/Body/Cheeze.png" data-layer="body" data-value="assets/body/Cheeze.png" alt="Cheeze">
+                        <img class="trait-option" src="assets/Body/DarkGreen.png" data-layer="body" data-value="assets/body/DarkGreen.png" alt="DarkGreen">
+                        <img class="trait-option" src="assets/Body/Disco.png" data-layer="body" data-value="assets/body/Disco.png" alt="Disco">
+                        <img class="trait-option" src="assets/Body/Grey.png" data-layer="body" data-value="assets/body/Grey.png" alt="Grey">
+                        <img class="trait-option" src="assets/Body/Lava.png" data-layer="body" data-value="assets/body/Lava.png" alt="Lava">
+                        <img class="trait-option" src="assets/Body/LightGreen.png" data-layer="body" data-value="assets/body/LightGreen.png" alt="LightGreen">
+                        <img class="trait-option" src="assets/Body/MegaBlack.png" data-layer="body" data-value="assets/body/MegaBlack.png" alt="MegaBlack">
+                        <img class="trait-option" src="assets/Body/Pink.png" data-layer="body" data-value="assets/body/Pink.png" alt="Pink">
+                        <img class="trait-option" src="assets/Body/PinkDonut.png" data-layer="body" data-value="assets/body/PinkDonut.png" alt="PinkDonut">
+                        <img class="trait-option" src="assets/Body/Pizza.png" data-layer="body" data-value="assets/body/Pizza.png" alt="Pizza">
+                        <img class="trait-option" src="assets/Body/Red.png" data-layer="body" data-value="assets/body/Red.png" alt="Red">
+                        <img class="trait-option" src="assets/Body/WhitePebble.png" data-layer="body" data-value="assets/body/WhitePebble.png" alt="WhitePebble">
+                        <img class="trait-option" src="assets/Body/Yellow.png" data-layer="body" data-value="assets/body/Yellow.png" alt="Yellow">
+                        <img class="trait-option" src="assets/Body/Zebra.png" data-layer="body" data-value="assets/body/Zebra.png" alt="Zebra">
+                        <img class="trait-option" src="assets/Body/Spectrum.png" data-layer="body" data-value="assets/body/Spectrum.png" alt="Spectrum">
+                    </div>
+                </div>
+        
+                <!-- Clothing Tab -->
+                <div class="tab-panel" id="clothing-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Clothing/420 Tee.png" data-layer="clothing" data-value="assets/clothing/420 Tee.png" alt="420 Tee">
+                        <img class="trait-option" src="assets/Clothing/80sBreaker.png" data-layer="clothing" data-value="assets/clothing/80sBreaker.png" alt="80sBreaker">
+                        <img class="trait-option" src="assets/Clothing/Banana Shirt.png" data-layer="clothing" data-value="assets/clothing/Banana Shirt.png" alt="Banana Shirt">
+                        <img class="trait-option" src="assets/Clothing/BikerJacket.png" data-layer="clothing" data-value="assets/clothing/BikerJacket.png" alt="BikerJacket">
+                        <img class="trait-option" src="assets/Clothing/Blasted.png" data-layer="clothing" data-value="assets/clothing/Blasted.png" alt="Blasted">
+                        <img class="trait-option" src="assets/Clothing/Bone Tee.png" data-layer="clothing" data-value="assets/clothing/Bone Tee.png" alt="Bone Tee">
+                        <img class="trait-option" src="assets/Clothing/Bubble Logo Tee.png" data-layer="clothing" data-value="assets/clothing/Bubble Logo Tee.png" alt="Bubble Logo Tee">
+                        <img class="trait-option" src="assets/Clothing/Buff Tee.png" data-layer="clothing" data-value="assets/clothing/Buff Tee.png" alt="Buff Tee">
+                        <img class="trait-option" src="assets/Clothing/Cowboy Jacket.png" data-layer="clothing" data-value="assets/clothing/Cowboy Jacket.png" alt="Cowboy Jacket">
+                        <img class="trait-option" src="assets/Clothing/ETH Tee.png" data-layer="clothing" data-value="assets/clothing/ETH Tee.png" alt="ETH Tee">
+                        <img class="trait-option" src="assets/Clothing/Flame Shirt.png" data-layer="clothing" data-value="assets/clothing/Flame Shirt.png" alt="Flame Shirt">
+                        <img class="trait-option" src="assets/Clothing/GoldChainWhiteTee.png" data-layer="clothing" data-value="assets/clothing/GoldChainWhiteTee.png" alt="GoldChainWhiteTee">
+                        <img class="trait-option" src="assets/Clothing/HawaiianShirt.png" data-layer="clothing" data-value="assets/clothing/HawaiianShirt.png" alt="HawaiianShirt">
+                        <img class="trait-option" src="assets/Clothing/Itchy Ass Sweater.png" data-layer="clothing" data-value="assets/clothing/Itchy Ass Sweater.png" alt="Itchy Ass Sweater">
+                        <img class="trait-option" src="assets/Clothing/King Frog Backpack.png" data-layer="clothing" data-value="assets/clothing/King Frog Backpack.png" alt="King Frog Backpack">
+                        <img class="trait-option" src="assets/Clothing/Life Vest.png" data-layer="clothing" data-value="assets/clothing/Life Vest.png" alt="Life Vest">
+                        <img class="trait-option" src="assets/Clothing/Nerd.png" data-layer="clothing" data-value="assets/clothing/Nerd.png" alt="Nerd">
+                        <img class="trait-option" src="assets/Clothing/Nipple Piercing.png" data-layer="clothing" data-value="assets/clothing/Nipple Piercing.png" alt="Nipple Piercing">
+                        <img class="trait-option" src="assets/Clothing/Overalls.png" data-layer="clothing" data-value="assets/clothing/Overalls.png" alt="Overalls">
+                        <img class="trait-option" src="assets/Clothing/OverallsWithKingFrong.png" data-layer="clothing" data-value="assets/clothing/OverallsWithKingFrong.png" alt="OverallsWithKingFrong">
+                        <img class="trait-option" src="assets/Clothing/Pancho.png" data-layer="clothing" data-value="assets/clothing/Pancho.png" alt="Pancho">
+                        <img class="trait-option" src="assets/Clothing/PimpCoat.png" data-layer="clothing" data-value="assets/clothing/PimpCoat.png" alt="PimpCoat">
+                        <img class="trait-option" src="assets/Clothing/PinkTank.png" data-layer="clothing" data-value="assets/clothing/PinkTank.png" alt="PinkTank">
+                        <img class="trait-option" src="assets/Clothing/Puffycoat.png" data-layer="clothing" data-value="assets/clothing/PuffyCoat.png" alt="PuffyCoat">
+                        <img class="trait-option" src="assets/Clothing/Punk Vest.png" data-layer="clothing" data-value="assets/clothing/Punk Vest.png" alt="Punk Vest">
+                        <img class="trait-option" src="assets/Clothing/Purple Cape.png" data-layer="clothing" data-value="assets/clothing/Purple Cape.png" alt="Purple Cape">
+                        <img class="trait-option" src="assets/Clothing/Simp Harness.png" data-layer="clothing" data-value="assets/clothing/Simp Harness.png" alt="Simp Harness">
+                        <img class="trait-option" src="assets/Clothing/SkullShirt.png" data-layer="clothing" data-value="assets/clothing/SkullShirt.png" alt="SkullShirt">
+                        <img class="trait-option" src="assets/Clothing/SweaterWeather.png" data-layer="clothing" data-value="assets/clothing/SweaterWeather.png" alt="SweaterWeather">
+                        <img class="trait-option" src="assets/Clothing/Tie Dye Tee.png" data-layer="clothing" data-value="assets/clothing/Tie Dye Tee.png" alt="Tie Dye Tee">
+                        <img class="trait-option" src="assets/Clothing/Trashcan.png" data-layer="clothing" data-value="assets/clothing/Trashcan.png" alt="Trashcan">
+                        <img class="trait-option" src="assets/Clothing/Trench.png" data-layer="clothing" data-value="assets/clothing/Trench.png" alt="Trench">
+                        <img class="trait-option" src="assets/Clothing/TurtleNeck.png" data-layer="clothing" data-value="assets/clothing/TurtleNeck.png" alt="TurtleNeck">
+                        <img class="trait-option" src="assets/Clothing/Watermelon Shirt.png" data-layer="clothing" data-value="assets/clothing/Watermelon Shirt.png" alt="Watermelon Shirt">
+                        <img class="trait-option" src="assets/Clothing/WetSuit.png" data-layer="clothing" data-value="assets/clothing/WetSuit.png" alt="WetSuit">
+                        <img class="trait-option" src="assets/Clothing/WhiteTee.png" data-layer="clothing" data-value="assets/clothing/WhiteTee.png" alt="WhiteTee">
+                        <img class="trait-option" src="assets/Clothing/WhiteTeeRipped.png" data-layer="clothing" data-value="assets/clothing/WhiteTeeRipped.png" alt="WhiteTeeRipped">
+                        <img class="trait-option" src="assets/Clothing/ZebraTee.png" data-layer="clothing" data-value="assets/clothing/ZebraTee.png" alt="ZebraTee">
+                    </div>
+                </div>
+
+                <!-- Hat Tab -->
+                <div class="tab-panel" id="hat-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Hats/BackwardCap.png" data-layer="hat" data-value="assets/hats/BackwardCap.png" alt="BackwardCap">
+                        <img class="trait-option" src="assets/Hats/Beanie.png" data-layer="hat" data-value="assets/hats/Beanie.png" alt="Beanie">
+                        <img class="trait-option" src="assets/Hats/BikerHat.png" data-layer="hat" data-value="assets/hats/BikerHat.png" alt="BikerHat">
+                        <img class="trait-option" src="assets/Hats/Bored Cap.png" data-layer="hat" data-value="assets/hats/Bored Cap.png" alt="Bored Cap">
+                        <img class="trait-option" src="assets/Hats/BucketHat.png" data-layer="hat" data-value="assets/hats/BucketHat.png" alt="BucketHat">
+                        <img class="trait-option" src="assets/Hats/Chonies.png" data-layer="hat" data-value="assets/hats/Chonies.png" alt="Chonies">
+                        <img class="trait-option" src="assets/Hats/CombOver.png" data-layer="hat" data-value="assets/hats/CombOver.png" alt="CombOver">
+                        <img class="trait-option" src="assets/Hats/Dickhead.png" data-layer="hat" data-value="assets/hats/Dickhead.png" alt="Dickhead">
+                        <img class="trait-option" src="assets/Hats/DoggyDooks.png" data-layer="hat" data-value="assets/hats/DoggyDooks.png" alt="DoggyDooks">
+                        <img class="trait-option" src="assets/Hats/DooDooBrain.png" data-layer="hat" data-value="assets/hats/DooDooBrain.png" alt="DooDooBrain">
+                        <img class="trait-option" src="assets/Hats/DooRag.png" data-layer="hat" data-value="assets/hats/DooRag.png" alt="DooRag">
+                        <img class="trait-option" src="assets/Hats/Flower.png" data-layer="hat" data-value="assets/hats/Flower.png" alt="Flower">
+                        <img class="trait-option" src="assets/Hats/GoldFish.png" data-layer="hat" data-value="assets/hats/GoldFish.png" alt="GoldFish">
+                        <img class="trait-option" src="assets/Hats/Hair.png" data-layer="hat" data-value="assets/hats/Hair.png" alt="Hair">
+                        <img class="trait-option" src="assets/Hats/Halo.png" data-layer="hat" data-value="assets/hats/Halo.png" alt="Halo">
+                        <img class="trait-option" src="assets/Hats/Headphones.png" data-layer="hat" data-value="assets/hats/Headphones.png" alt="Headphones">
+                        <img class="trait-option" src="assets/Hats/HipsterHat.png" data-layer="hat" data-value="assets/hats/HipsterHat.png" alt="HipsterHat">
+                        <img class="trait-option" src="assets/Hats/JimmyHat.png" data-layer="hat" data-value="assets/hats/JimmyHat.png" alt="JimmyHat">
+                        <img class="trait-option" src="assets/Hats/KingFrogsCrown.png" data-layer="hat" data-value="assets/hats/KingFrogsCrown.png" alt="KingFrogsCrown">
+                        <img class="trait-option" src="assets/Hats/KittyEars.png" data-layer="hat" data-value="assets/hats/KittyEars.png" alt="KittyEars">
+                        <img class="trait-option" src="assets/Hats/Mohawk.png" data-layer="hat" data-value="assets/hats/Mohawk.png" alt="Mohawk">
+                        <img class="trait-option" src="assets/Hats/Pants.png" data-layer="hat" data-value="assets/hats/Pants.png" alt="Pants">
+                        <img class="trait-option" src="assets/Hats/Paper Hat.png" data-layer="hat" data-value="assets/hats/Paper Hat.png" alt="Paper Hat">
+                        <img class="trait-option" src="assets/Hats/PartyHat.png" data-layer="hat" data-value="assets/hats/PartyHat.png" alt="PartyHat">
+                        <img class="trait-option" src="assets/Hats/PotHead.png" data-layer="hat" data-value="assets/hats/PotHead.png" alt="PotHead">
+                        <img class="trait-option" src="assets/Hats/Pyramid Head.png" data-layer="hat" data-value="assets/hats/Pyramid Head.png" alt="Pyramid Head">
+                        <img class="trait-option" src="assets/Hats/SharkDome.png" data-layer="hat" data-value="assets/hats/SharkDome.png" alt="SharkDome">
+                        <img class="trait-option" src="assets/Hats/Shroom Boom.png" data-layer="hat" data-value="assets/hats/Shroom Boom.png" alt="Shroom Boom">
+                        <img class="trait-option" src="assets/Hats/Sombrero.png" data-layer="hat" data-value="assets/hats/Sombrero.png" alt="Sombrero">
+                        <img class="trait-option" src="assets/Hats/Spinner.png" data-layer="hat" data-value="assets/hats/Spinner.png" alt="Spinner">
+                        <img class="trait-option" src="assets/Hats/SushiMaster.png" data-layer="hat" data-value="assets/hats/SushiMaster.png" alt="SushiMaster">
+                        <img class="trait-option" src="assets/Hats/SweatBand.png" data-layer="hat" data-value="assets/hats/SweatBand.png" alt="SweatBand">
+                        <img class="trait-option" src="assets/Hats/Taco Hat.png" data-layer="hat" data-value="assets/hats/Taco Hat.png" alt="Taco Hat">
+                        <img class="trait-option" src="assets/Hats/TieHead.png" data-layer="hat" data-value="assets/hats/TieHead.png" alt="TieHead">
+                        <img class="trait-option" src="assets/Hats/TinFoilHat.png" data-layer="hat" data-value="assets/hats/TinFoilHat.png" alt="TinFoilHat">
+                        <img class="trait-option" src="assets/Hats/TPRoll.png" data-layer="hat" data-value="assets/hats/TPRoll.png" alt="TPRoll">
+                        <img class="trait-option" src="assets/Hats/Umbrella.png" data-layer="hat" data-value="assets/hats/Umbrella.png" alt="Umbrella">
+                        <img class="trait-option" src="assets/Hats/WizardCap.png" data-layer="hat" data-value="assets/hats/WizardCap.png" alt="WizardCap">
+                        
+                    </div>
+                </div>
+
+                <!-- Mouth Tab -->
+                <div class="tab-panel" id="mouth-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Mouth/Basic Smile.png" data-layer="mouth" data-value="assets/mouth/Basic Smile.png" alt="Basic Smile">
+                        <img class="trait-option" src="assets/Mouth/Big Smile.png" data-layer="mouth" data-value="assets/mouth/Big Smile.png" alt="Big Smile">
+                        <img class="trait-option" src="assets/Mouth/Bored.png" data-layer="mouth" data-value="assets/mouth/Bored.png" alt="Bored">
+                        <img class="trait-option" src="assets/Mouth/BraceFace.png" data-layer="mouth" data-value="assets/mouth/BraceFace.png" alt="BraceFace">
+                        <img class="trait-option" src="assets/Mouth/BubbleGum.png" data-layer="mouth" data-value="assets/mouth/BubbleGum.png" alt="BubbleGum">
+                        <img class="trait-option" src="assets/Mouth/BuckTeeth.png" data-layer="mouth" data-value="assets/mouth/BuckTeeth.png" alt="BuckTeeth>
+                        <img class="trait-option" src="assets/Mouth/Caveduck.png" data-layer="mouth" data-value="assets/mouth/Caveduck.png" alt="Caveduck">
+                        <img class="trait-option" src="assets/Mouth/Cheeky.png" data-layer="mouth" data-value="assets/mouth/Cheeky.png" alt="Cheeky">
+                        <img class="trait-option" src="assets/Mouth/Dog Tongue.png" data-layer="mouth" data-value="assets/mouth/Dog Tongue.png" alt="Dog Tongue">
+                        <img class="trait-option" src="assets/Mouth/Eff.png" data-layer="mouth" data-value="assets/mouth/Eff.png" alt="Eff">
+                        <img class="trait-option" src="assets/Mouth/Fangs.png" data-layer="mouth" data-value="assets/mouth/Fangs.png" alt="Fangs">
+                        <img class="trait-option" src="assets/Mouth/Fast Frown.png" data-layer="mouth" data-value="assets/mouth/Fast Frown.png" alt="Fast Frown">
+                        <img class="trait-option" src="assets/Mouth/Hard L.png" data-layer="mouth" data-value="assets/mouth/Hard L.png" alt="Hard L">
+                        <img class="trait-option" src="assets/Mouth/Juicy Lips.png" data-layer="mouth" data-value="assets/mouth/Juicy Lips.png" alt="Juicy Lips">
+                        <img class="trait-option" src="assets/Mouth/Lip Bite.png" data-layer="mouth" data-value="assets/mouth/Lip Bite.png" alt="Lip Bite">
+                        <img class="trait-option" src="assets/Mouth/Lolly pop.png" data-layer="mouth" data-value="assets/mouth/Lolly Pop.png" alt="Lolly Pop">
+                        <img class="trait-option" src="assets/Mouth/Mega Phone.png" data-layer="mouth" data-value="assets/mouth/Mega Phone.png" alt="Mega Phone">
+                        <img class="trait-option" src="assets/Mouth/SadFace.png" data-layer="mouth" data-value="assets/mouth/SadFace.png" alt="SadFace">
+                        <img class="trait-option" src="assets/Mouth/SlySmile.png" data-layer="mouth" data-value="assets/mouth/SlySmile.png" alt="SlySmile">
+                        <img class="trait-option" src="assets/Mouth/Spitter.png" data-layer="mouth" data-value="assets/mouth/Spitter.png" alt="Spitter">
+                        <img class="trait-option" src="assets/Mouth/Thinkin.png" data-layer="mouth" data-value="assets/mouth/Thinkin.png" alt="Thinkin">
+                        <img class="trait-option" src="assets/Mouth/Tongue Out.png" data-layer="mouth" data-value="assets/mouth/Tongue Out.png" alt="Tongue Out">
+                        <img class="trait-option" src="assets/Mouth/Wavey.png" data-layer="mouth" data-value="assets/mouth/Wavey.png" alt="Wavey">
+                        <img class="trait-option" src="assets/Mouth/WhaWha.png" data-layer="mouth" data-value="assets/mouth/WhaWha.png" alt="WhaWha">
+                        <img class="trait-option" src="assets/Mouth/Whistle.png" data-layer="mouth" data-value="assets/mouth/Whistle.png" alt="Whistle">
+                        <img class="trait-option" src="assets/Mouth/Wonky.png" data-layer="mouth" data-value="assets/mouth/Wonky.png" alt="Wonky">
+                        <img class="trait-option" src="assets/Mouth/Woo.png" data-layer="mouth" data-value="assets/mouth/Woo.png" alt="Woo">
+                    </div>
+                </div>
+
+                <!-- Eyes Tab -->
+                <div class="tab-panel" id="eyes-tab">
+                    <div class="trait-grid">
+                        <img class="trait-option" src="assets/Eyes/3Eyes.png" data-layer="eyes" data-value="assets/eyes/3Eyes.png" alt="3Eyes">
+                        <img class="trait-option" src="assets/Eyes/AlienPunk.png" data-layer="eyes" data-value="assets/eyes/AlienPunk.png" alt="AlienPunk">
+                        <img class="trait-option" src="assets/Eyes/Anxious.png" data-layer="eyes" data-value="assets/eyes/Anxious.png" alt="Anxious">
+                        <img class="trait-option" src="assets/Eyes/BlackEye.png" data-layer="eyes" data-value="assets/eyes/BlackEye.png" alt="BlackEye">
+                        <img class="trait-option" src="assets/Eyes/Buggy.png" data-layer="eyes" data-value="assets/eyes/Buggy.png" alt="Buggy">
+                        <img class="trait-option" src="assets/Eyes/CaveDuck.png" data-layer="eyes" data-value="assets/eyes/CaveDuck.png" alt="CaveDuck">
+                        <img class="trait-option" src="assets/Eyes/Curious.png" data-layer="eyes" data-value="assets/eyes/Curious.png" alt="Curious">
+                        <img class="trait-option" src="assets/Eyes/Cyclops.png" data-layer="eyes" data-value="assets/eyes/Cyclops.png" alt="Cyclops">
+                        <img class="trait-option" src="assets/Eyes/Dazy.png" data-layer="eyes" data-value="assets/eyes/Dazy.png" alt="Dazy">
+                        <img class="trait-option" src="assets/Eyes/Dead.png" data-layer="eyes" data-value="assets/eyes/Dead.png" alt="Dead">
+                        <img class="trait-option" src="assets/Eyes/Doh.png" data-layer="eyes" data-value="assets/eyes/Doh.png" alt="Doh">
+                        <img class="trait-option" src="assets/Eyes/Focus.png" data-layer="eyes" data-value="assets/eyes/Focus.png" alt="Focus">
+                        <img class="trait-option" src="assets/Eyes/Goggles.png" data-layer="eyes" data-value="assets/eyes/Goggles.png" alt="Goggles">
+                        <img class="trait-option" src="assets/Eyes/Happy.png" data-layer="eyes" data-value="assets/eyes/Happy.png" alt="Happy">
+                        <img class="trait-option" src="assets/Eyes/Hippy.png" data-layer="eyes" data-value="assets/eyes/Hippy.png" alt="Hippy">
+                        <img class="trait-option" src="assets/Eyes/Madlips.png" data-layer="eyes" data-value="assets/eyes/Madlips.png" alt="Madlips">
+                        <img class="trait-option" src="assets/Eyes/MiniDots.png" data-layer="eyes" data-value="assets/eyes/MiniDots.png" alt="MiniDots">
+                        <img class="trait-option" src="assets/Eyes/Namco.png" data-layer="eyes" data-value="assets/eyes/Namco.png" alt="Namco">
+                        <img class="trait-option" src="assets/Eyes/Shadorz.png" data-layer="eyes" data-value="assets/eyes/Shadorz.png" alt="Shadorz">
+                        <img class="trait-option" src="assets/Eyes/ShaunShadez.png" data-layer="eyes" data-value="assets/eyes/ShaunShadez.png" alt="ShaunShadez">
+                        <img class="trait-option" src="assets/Eyes/Standard.png" data-layer="eyes" data-value="assets/eyes/Standard.png" alt="Standard">
+                        <img class="trait-option" src="assets/Eyes/SuperHappy.png" data-layer="eyes" data-value="assets/eyes/SuperHappy.png" alt="SuperHappy">
+                        <img class="trait-option" src="assets/Eyes/TiredCat.png" data-layer="eyes" data-value="assets/eyes/TiredCat.png" alt="TirecCat">
+                        <img class="trait-option" src="assets/Eyes/Triangle.png" data-layer="eyes" data-value="assets/eyes/Triangle.png" alt="Triangle">
+                        <img class="trait-option" src="assets/Eyes/Tripped.png" data-layer="eyes" data-value="assets/eyes/Tripped.png" alt="Tripped">
+                        <img class="trait-option" src="assets/Eyes/Twack.png" data-layer="eyes" data-value="assets/eyes/Twack.png" alt="Twack">
+                        <img class="trait-option" src="assets/Eyes/Zapped.png" data-layer="eyes" data-value="assets/eyes/Zapped.png" alt="Zapped">  
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Left Section: Trait Tabs -->
+        <div id="character-preview">
+            <img id="background" class="layer" src="assets/Design_Elements/Default_Preview.png" alt="Background">
+            <img id="body" class="layer" alt="Body">
+            <img id="clothing" class="layer" alt="Clothing">
+            <img id="hat" class="layer" alt="Hat">
+            <img id="mouth" class="layer" alt="Mouth">
+            <img id="eyes" class="layer" alt="Eyes">
+        </div>
+        <button id="export" class="export-button">Export Creation</button>
+    </div>
+
+        
+        
+       <!-- <div class="trait-selector">
+            <label for="background-select">Background:</label>
+            <select id="background-select">
+                <option value="" disabled selected>Select a Background</option>
+                <option value="assets/background/Ash.png">Ash</option>
+                <option value="assets/background/Blue.png">Blue</option>
+                <option value="assets/background/Boardwalk.png">Boardwalk</option>
+                <option value="assets/background/BubbleGum.png">Bubble Gum</option>
+                <option value="assets/background/Candy.png">Candy</option>
+                <option value="assets/background/DeepPurple.png">Deep Purple</option>
+                <option value="assets/background/Green.png">Green</option>
+                <option value="assets/background/Grey.png">Grey</option>
+                <option value="assets/background/PaintSplatter.png">Paint Splatter</option>
+                <option value="assets/background/Pink.png">Pink</option>
+                <option value="assets/background/Sky.png">Sky</option>
+                <option value="assets/background/Sunset.png">Sunset</option>
+                <option value="assets/background/TieDye.png">Tie-Dye</option>
+                <option value="assets/background/TieDyeNight.png">Tie-Dye Night</option>
+                <option value="assets/background/Toxic.png">Toxic</option>
+                <option value="assets/background/YellowOrange.png">YellowOrange</option>
+            </select>
+        </div>
+        
+        <div class="trait-selector">
+            <label for="body-select">Body:</label>
+            <select id="body-select">
+                <option value="" disabled selected>Select a Body</option>
+                <option value="assets/body/2Toned.png">2-Toned</option>
+                <option value="assets/body/Blue.png">Blue</option>
+                <option value="assets/body/ButterMilk.png">Butter Milk</option>
+                <option value="assets/body/Cheeze.png">Cheeze</option>
+                <option value="assets/body/DarkGreen.png">Dark Green</option>
+                <option value="assets/body/Disco.png">Disco</option>
+                <option value="assets/body/Grey.png">Grey</option>
+                <option value="assets/body/Lava.png">Lava</option>
+                <option value="assets/body/LightGreen.png">Light Green</option>
+                <option value="assets/body/MegaBlack.png">Mega Black</option>
+                <option value="assets/body/Pink.png">Pink</option>
+                <option value="assets/body/PinkDonut.png">Pink Donut</option>
+                <option value="assets/body/Pizza.png">Pizza</option>
+                <option value="assets/body/Red.png">Red</option>
+                <option value="assets/body/Spectrum.png">Spectrum</option>
+                <option value="assets/body/WhitePebble.png">White Pebble</option>
+                <option value="assets/body/Yellow.png">Yellow</option>
+                <option value="assets/body/Zebra.png">Zebra</option>
+            </select>
+        </div>
+        
+        <div class="trait-selector">
+            <label for="clothing-select">Clothing:</label>
+            <select id="clothing-select">
+                <option value="" disabled selected>Select an Outfit</option>
+                <option value="">None</option>
+                <option value="assets/clothing/80sBreaker.png">80s Breaker</option>
+                <option value="assets/clothing/420 Tee.png">420 Tee</option>
+                <option value="assets/clothing/Banana Shirt.png">Banana Shirt</option>
+                <option value="assets/clothing/BikerJacket.png">Biker Jacket</option>
+                <option value="assets/clothing/Blasted.png">Blasted</option>
+                <option value="assets/clothing/Bone Tee.png">Skull Shirt</option>
+                <option value="assets/clothing/Bubble Logo Tee.png">Bubble Logo Tee</option>
+                <option value="assets/clothing/Buff Tee.png">Buff Tee</option>
+                <option value="assets/clothing/Cowboy Jacket.png">Cowboy Jacket</option>
+                <option value="assets/clothing/ETH Tee.png">ETH Tee</option>
+                <option value="assets/clothing/Flame Shirt.png">Flame Shirt</option>
+                <option value="assets/clothing/GoldChainWhiteTee.png">Gold Chain White Tee</option>
+                <option value="assets/clothing/HawaiianShirt.png">Hawaiian Shirt</option>
+                <option value="assets/clothing/Itchy Ass Sweater.png">Itchy Ass Sweater</option>
+                <option value="assets/clothing/King Frog Backpack.png">KingFrog Backpack</option>
+                <option value="assets/clothing/Nerd.png">Nerd</option>
+                <option value="assets/clothing/Nipple Piercing.png">Nipple Piercing</option>
+                <option value="assets/clothing/Overalls.png">Overalls</option>
+                <option value="assets/clothing/OverallsWithKingFrong.png">KingFrog Overalls</option>
+                <option value="assets/clothing/Pancho.png">Pancho</option>
+                <option value="assets/clothing/PimpCoat.png">Pimp Coat</option>
+                <option value="assets/clothing/PinkTank.png">Pink Tank</option>
+                <option value="assets/clothing/PuffyCoat.png">Puffy Coat</option>
+                <option value="assets/clothing/Punk Vest.png">Punk Vest</option>
+                <option value="assets/clothing/Purple Cape.png">Purple Cape</option>
+                <option value="assets/clothing/Simp Harness.png">Simp Harness</option>
+                <option value="assets/clothing/SkullShirt.png">Black Tee</option>
+                <option value="assets/clothing/SweaterWeather.png">Sweater Weather</option>
+                <option value="assets/clothing/Tie Dye Tee.png">Tie-Dye Tee</option>
+                <option value="assets/clothing/Trashcan.png">Trashcan</option>
+                <option value="assets/clothing/Trench.png">Trench</option>
+                <option value="assets/clothing/TurtleNeck.png">Turtle Neck</option>
+                <option value="assets/clothing/Watermelon Shirt.png">Watermelon Shirt</option>
+                <option value="assets/clothing/WetSuit.png">Wet Suit</option>
+                <option value="assets/clothing/WhiteTee.png">White Tee</option>
+                <option value="assets/clothing/WhiteTeeRipped.png">Ripped White Tee</option>
+                <option value="assets/clothing/ZebraTee.png">Zebra Tee</option>
+                <option value="assets/clothing/Life Vest.png">Life Vest</option>
+            </select>
+        </div>
+        
+        <div class="trait-selector">
+            <label for="mouth-select">Mouth:</label>
+            <select id="mouth-select">
+                <option value="" disabled selected>Select a Mouth</option>
+                <option value="assets/mouth/Bored.png">Bored</option>
+                <option value="assets/mouth/BraceFace.png">Brace Face</option>
+                <option value="assets/mouth/BubbleGum.png">Bubble Gum</option>
+                <option value="assets/mouth/BuckTeeth.png">Buck Teeth</option>
+                <option value="assets/mouth/Caveduck.png">Cave Duck</option>
+                <option value="assets/mouth/Cheeky.png">Cheeky</option>
+                <option value="assets/mouth/Dog Tongue.png">Dog Tongue</option>
+                <option value="assets/mouth/Fast Frown.png">Fast Frown</option>
+                <option value="assets/mouth/Hard L.png">Hard L</option>
+                <option value="assets/mouth/Juicy Lips.png">Juicy Lips</option>
+                <option value="assets/mouth/Lip Bite.png">Lip Bite</option>
+                <option value="assets/mouth/Eff.png">Eff</option>
+                <option value="assets/mouth/Lolly Pop.png">Lolly Pop</option>
+                <option value="assets/mouth/Mega Phone.png">Mega Phone</option>
+                <option value="assets/mouth/SadFace.png">Sad Face</option>
+                <option value="assets/mouth/SlySmile.png">Sly Smile</option>
+                <option value="assets/mouth/Spitter.png">Spitter</option>
+                <option value="assets/mouth/Thinkin.png">Thinkin</option>
+                <option value="assets/mouth/Basic Smile.png">Basic Smile</option>
+                <option value="assets/mouth/Tongue Out.png">Tongue Out</option>
+                <option value="assets/mouth/Fangs.png">Fangs</option>
+                <option value="assets/mouth/Woo.png">Woo</option>
+                <option value="assets/mouth/Big Smile.png">Big Smile</option>
+                <option value="assets/mouth/Wavey.png">Wavey</option>
+                <option value="assets/mouth/WhaWha.png">WhaWha</option>
+                <option value="assets/mouth/Whistle.png">Whistle</option>
+                <option value="assets/mouth/Wonky.png">Wonky</option>
+            </select>
+        </div>
+        
+        <div class="trait-selector">
+            <label for="hat-select">Hats:</label>
+            <select id="hat-select">
+                <option value="" disabled selected>Select Headwear</option>
+                <option value="assets/hats/BackwardCap.png">Backward Cap</option>
+                <option value="assets/hats/Beanie.png">Beanie</option>
+                <option value="assets/hats/BikerHat.png">Biker Hat</option>
+                <option value="assets/hats/Bored Cap.png">Bored Cap</option>
+                <option value="assets/hats/BucketHat.png">Bucket Hat</option>
+                <option value="assets/hats/Chonies.png">Chonies</option>
+                <option value="assets/hats/CombOver.png">CombOver</option>
+                <option value="assets/hats/Dickhead.png">Dick Head</option>
+                <option value="assets/hats/DoggyDooks.png">Doggy Dooks</option>
+                <option value="assets/hats/DooDooBrain.png">DooDoo Brain</option>
+                <option value="assets/hats/DooRag.png">DooRag</option>
+                <option value="assets/hats/Flower.png">Flower</option>
+                <option value="assets/hats/GoldFish.png">Gold Fish</option>
+                <option value="assets/hats/Hair.png">Hair</option>
+                <option value="assets/hats/Halo.png">Halo</option>
+                <option value="assets/hats/Headphones.png">Headphones</option>
+                <option value="assets/hats/HipsterHat.png">HipsterHat</option>
+                <option value="assets/hats/JimmyHat.png">JimmyHat</option>
+                <option value="assets/hats/KingFrogsCrown.png">KingFrog Crown</option>
+                <option value="assets/hats/KittyEars.png">Kitty Ears</option>
+                <option value="assets/hats/Mohawk.png">Mohawk</option>
+                <option value="assets/hats/Pants.png">Pants</option>
+                <option value="assets/hats/Paper Hat.png">Paper Hat</option>
+                <option value="assets/hats/PartyHat.png">Party Hat</option>
+                <option value="assets/hats/PotHead.png">Pot Head</option>
+                <option value="assets/hats/Pyramid Head.png">Pyramid</option>
+                <option value="assets/hats/SharkDome.png">Shark Dome</option>
+                <option value="assets/hats/Shroom Boom.png">Shroom Boom</option>
+                <option value="assets/hats/Sombrero.png">Sombrero</option>
+                <option value="assets/hats/Spinner.png">Spinner</option>
+                <option value="assets/hats/SushiMaster.png">Sushi Master</option>
+                <option value="assets/hats/SweatBand.png">Sweat Band</option>
+                <option value="assets/hats/Taco Hat.png">Taco Hat</option>
+                <option value="assets/hats/TieHead.png">Tie Head</option>
+                <option value="assets/hats/TinFoilHat.png">Tinfoil Hat</option>
+                <option value="assets/hats/TPRoll.png">TP Roll</option>
+                <option value="assets/hats/Umbrella.png">Umbrella</option>
+                <option value="assets/hats/WizardCap.png">Wizard Cap</option>
+            </select>
+        </div>
+        
+        <div class="trait-selector">
+            <label for="eyes-select">Eyes:</label>
+            <select id="eyes-select">
+                <option value="" disabled selected>Select Eyes</option>
+                <option value="assets/eyes/3Eyes.png">3 Eyes</option>
+                <option value="assets/eyes/AlienPunk.png">Alien Punk</option>
+                <option value="assets/eyes/BlackEye.png">Black Eye</option>
+                <option value="assets/eyes/Buggy.png">Buggy</option>
+                <option value="assets/eyes/CaveDuck.png">Cave Duck</option>
+                <option value="assets/eyes/Curious.png">Curious</option>
+                <option value="assets/eyes/Cyclops.png">Cyclops</option>
+                <option value="assets/eyes/Dazy.png">Dazy</option>
+                <option value="assets/eyes/Dead.png">Dead</option>
+                <option value="assets/eyes/Doh.png">Doh</option>
+                <option value="assets/eyes/Focus.png">Focus</option>
+                <option value="assets/eyes/Goggles.png">Goggles</option>
+                <option value="assets/eyes/Happy.png">Happy</option>
+                <option value="assets/eyes/Hippy.png">Hippy</option>
+                <option value="assets/eyes/Madlips.png">Madlips</option>
+                <option value="assets/eyes/MiniDots.png">Mini Dots</option>
+                <option value="assets/eyes/Namco.png">Namco</option>
+                <option value="assets/eyes/Shadorz.png">Shadorz</option>
+                <option value="assets/eyes/ShaunShadez.png">Shaun Shadez</option>
+                <option value="assets/eyes/Standard.png">Standard</option>
+                <option value="assets/eyes/SuperHappy.png">Super Happy</option>
+                <option value="assets/eyes/TiredCat.png">Tired Cat</option>
+                <option value="assets/eyes/Triangle.png">Triangle</option>
+                <option value="assets/eyes/Tripped.png">Tripped</option>
+                <option value="assets/eyes/Twack.png">Twack</option>
+                <option value="assets/eyes/Zapped.png">Zapped</option>
+                <option value="assets/eyes/Goggles.png">Goggles</option>
+            </select>
+        </div> -->
+        
+
+    <script src="js/script.js"></script>
+</body>
+</html>

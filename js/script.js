@@ -141,3 +141,22 @@ document.getElementById("export").addEventListener("click", function () {
         link.click();
     }, "image/png");
 });
+
+document.querySelectorAll('.trait-option').forEach(option => {
+    option.addEventListener('click', function () {
+        const layer = this.getAttribute('data-layer'); // e.g., "clothing"
+        const value = this.getAttribute('data-value'); // e.g., "none"
+
+        const targetLayer = document.getElementById(layer); // Get the layer (e.g., #clothing)
+
+        if (value === "none") {
+            // Hide the clothing layer for "None" option
+            targetLayer.src = ""; // Clear the image source
+            targetLayer.style.visibility = "hidden"; // Hide the layer
+        } else {
+            // Show and update the clothing layer for other options
+            targetLayer.src = value; // Set the image source
+            targetLayer.style.visibility = "visible"; // Show the layer
+        }
+    });
+});

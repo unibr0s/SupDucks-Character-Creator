@@ -187,7 +187,6 @@ button {
 /* Optional hover effect for images */
 .trait-option:hover {
     transform: scale(1.1); /* Slight zoom effect */
-    border-color: #007bff; /* Highlight border on hover */
 }
 
 /* Style the text below images */
@@ -274,4 +273,17 @@ button {
 
 .site-footer a:hover {
     color: #0056b3; /* Darker blue on hover */
+}
+
+.trait-option[alt="None"] {
+    opacity: 0.5; /* Make it slightly grayed out */
+}
+
+.trait-option[alt="None"]:hover {
+    opacity: 1; /* Highlight on hover */
+}
+
+.layer:not([src]) {
+    visibility: hidden; /* Make it invisible */
+    display: none; /* Remove it from the layout */
 }

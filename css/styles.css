@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column; /* Stack header and content vertically */
     transform: scale(0.9); /* Scale down the entire page to 90% of its size */
@@ -45,7 +46,7 @@ body {
     align-items: center; /* Center the content vertically */
     position: relative; /* Positioning for layered images */
     margin: 20px; /* Add spacing around the preview */
-    border-radius: 10px; /* Optional: Rounded corners */
+    border-radius: 15px; /* Optional: Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow */
 }
 
@@ -56,7 +57,7 @@ body {
     width: 100%; /* Make images take the full width of the box */
     height: 100%; /* Make images take the full height of the box */
     object-fit: cover; /* Ensure the image covers the box while maintaining proportions */
-    border-radius: 10px; /* Optional: Match preview box rounded corners */
+    border-radius: 15px; /* Optional: Match preview box rounded corners */
 }
 
 /* Export Button */
@@ -345,38 +346,3 @@ main {
     justify-content: center; /* Centers the content vertically */
     align-items: center; /* Centers the content horizontally */
 } 
-
-@media (orientation: portrait) {
-    #orientation-lock {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        color: #fff;
-        font-size: 18px;
-        z-index: 1000;
-        text-align: center;
-    }
-
-    body {
-        overflow: hidden; /* Prevent scrolling when the message is shown */
-    }
-}
-
-@media (orientation: landscape) {
-    #orientation-lock {
-        display: none; /* Hide the message in landscape mode */
-    }
-}
-
-html, body {
-    width: 1024px;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0;
-    padding: 0;
-}

@@ -346,3 +346,22 @@ main {
     justify-content: center; /* Centers the content vertically */
     align-items: center; /* Centers the content horizontally */
 } 
+
+#mobile-blocker {
+    display: none; /* Default hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}

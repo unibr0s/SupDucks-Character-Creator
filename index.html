@@ -70,7 +70,47 @@
     </style>
     
 </head>
+<script>
+    function checkScreenSize() {
+        const mobileBlocker = document.getElementById('mobile-blocker');
+        const content = document.getElementById('character-builder');
+        const footer = document.querySelector('.site-footer');
+
+        if (window.innerWidth <= 1024) {
+            mobileBlocker.style.display = 'flex'; // Show the mobile blocker
+            mobileBlocker.style.position = 'fixed';
+            mobileBlocker.style.top = '0';
+            mobileBlocker.style.left = '0';
+            mobileBlocker.style.width = '100vw';
+            mobileBlocker.style.height = '100vh';
+            mobileBlocker.style.backgroundColor = 'white';
+            mobileBlocker.style.zIndex = '9999';
+            mobileBlocker.style.justifyContent = 'center';
+            mobileBlocker.style.alignItems = 'center';
+            mobileBlocker.style.textAlign = 'center';
+            mobileBlocker.style.fontSize = '18px';
+            mobileBlocker.style.color = 'black';
+
+            // Hide main content
+            content.style.display = 'none';
+            footer.style.display = 'none';
+        } else {
+            mobileBlocker.style.display = 'none'; // Hide the mobile blocker
+            content.style.display = 'flex'; // Show main content
+            footer.style.display = 'flex';
+        }
+    }
+
+    // Run on page load
+    window.onload = checkScreenSize;
+
+    // Run whenever the window is resized
+    window.onresize = checkScreenSize;
+</script>
 <body>
+    <div id="mobile-blocker" style="display: none;">
+        <p>Please use a desktop device for the best experience.</p>
+    </div>
     <header class="header-container">
         <img src="Assets/Design_Elements/SupDucks Logo.png" alt="SupDucks Logo" id="site-logo">
         <h2>Character Builder</h2>

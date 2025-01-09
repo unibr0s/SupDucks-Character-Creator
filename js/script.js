@@ -160,3 +160,27 @@ document.querySelectorAll('.trait-option').forEach(option => {
         }
     });
 });
+
+// Select the hover sound
+const hoverSound = document.getElementById('hover-sound');
+
+// Function to play sound
+function playHoverSound() {
+    hoverSound.currentTime = 0; // Reset the audio to the beginning
+    hoverSound.play();
+}
+
+// Select all buttons and traits
+const buttons = document.querySelectorAll('button');
+const traits = document.querySelectorAll('.trait-option');
+
+// Add hover event listeners to all buttons
+buttons.forEach(button => {
+    button.addEventListener('mouseenter', playHoverSound);
+});
+
+// Add hover event listeners to all trait options
+traits.forEach(trait => {
+    trait.addEventListener('mouseenter', playHoverSound);
+});
+

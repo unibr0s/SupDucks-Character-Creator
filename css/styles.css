@@ -374,7 +374,8 @@ main {
 button.shrink,
 .tab-button.shrink,
 #randomize.shrink,
-#export.shrink {
+#export.shrink,
+.trait-option.shrink {
     transform: scale(0.95) !important;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
     transition: transform 0.1s ease, box-shadow 0.1s ease !important;

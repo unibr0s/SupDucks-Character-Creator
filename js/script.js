@@ -176,31 +176,31 @@ function playHoverSound() {
 }
 
 // Function to handle button animations
-function setupButtonAnimation(button) {
-    if (!button) {
-        console.log('Button not found!');
+function setupButtonAnimation(element) {
+    if (!element) {
+        console.log('Element not found!');
         return;
     }
     
-    console.log('Setting up animation for button:', button.id || button.className);
+    console.log('Setting up animation for:', element.id || element.className);
     
     // Add hover sound effect
-    button.addEventListener('mouseenter', playHoverSound);
+    element.addEventListener('mouseenter', playHoverSound);
     
-    button.addEventListener('mousedown', () => {
-        console.log('Button pressed:', button.id || button.className); // Debug log
-        button.classList.add('shrink');
+    element.addEventListener('mousedown', () => {
+        console.log('Element pressed:', element.id || element.className);
+        element.classList.add('shrink');
         console.log('Added shrink class');
-        console.log('Current classes:', button.classList.toString());
+        console.log('Current classes:', element.classList.toString());
     });
     
-    button.addEventListener('mouseup', () => {
-        button.classList.remove('shrink');
+    element.addEventListener('mouseup', () => {
+        element.classList.remove('shrink');
         console.log('Removed shrink class');
     });
     
-    button.addEventListener('mouseleave', () => {
-        button.classList.remove('shrink');
+    element.addEventListener('mouseleave', () => {
+        element.classList.remove('shrink');
     });
 }
 
@@ -216,4 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup animation for export button
     setupButtonAnimation(document.getElementById('export'));
+
+    // Setup animations for trait options
+    document.querySelectorAll('.trait-option').forEach(traitOption => {
+        setupButtonAnimation(traitOption);
+    });
 });

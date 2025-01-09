@@ -174,3 +174,46 @@ function playHoverSound() {
         hoverSound.play();
     }
 }
+
+// Function to handle button animations
+function setupButtonAnimation(button) {
+    if (!button) {
+        console.log('Button not found!');
+        return;
+    }
+    
+    console.log('Setting up animation for button:', button.id || button.className);
+    
+    // Add hover sound effect
+    button.addEventListener('mouseenter', playHoverSound);
+    
+    button.addEventListener('mousedown', () => {
+        console.log('Button pressed:', button.id || button.className); // Debug log
+        button.classList.add('shrink');
+        console.log('Added shrink class');
+        console.log('Current classes:', button.classList.toString());
+    });
+    
+    button.addEventListener('mouseup', () => {
+        button.classList.remove('shrink');
+        console.log('Removed shrink class');
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        button.classList.remove('shrink');
+    });
+}
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Setup animations for all tab buttons
+    document.querySelectorAll('.tab-button').forEach(button => {
+        setupButtonAnimation(button);
+    });
+
+    // Setup animation for randomize button
+    setupButtonAnimation(document.getElementById('randomize'));
+
+    // Setup animation for export button
+    setupButtonAnimation(document.getElementById('export'));
+});

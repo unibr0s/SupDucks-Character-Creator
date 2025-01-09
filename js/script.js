@@ -164,10 +164,15 @@ document.querySelectorAll('.trait-option').forEach(option => {
 // Select the hover sound
 const hoverSound = document.getElementById('hover-sound');
 
+// Set the volume (0.5 is half volume, adjust as needed)
+hoverSound.volume = 0.5;
+
 // Function to play sound
 function playHoverSound() {
-    hoverSound.currentTime = 0; // Reset the audio to the beginning
-    hoverSound.play();
+    if (hoverSound.paused) {
+        hoverSound.currentTime = 0; // Reset the audio to the beginning
+        hoverSound.play();
+    }
 }
 
 // Select all buttons and traits

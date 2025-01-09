@@ -369,3 +369,8 @@ main {
     padding: 20px;
     font-family: Arial, sans-serif;
 }
+
+.shrink {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+}

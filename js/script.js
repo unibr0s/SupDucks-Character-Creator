@@ -165,7 +165,7 @@ document.querySelectorAll('.trait-option').forEach(option => {
 const hoverSound = document.getElementById('hover-sound');
 
 // Set the volume (0.5 is half volume, adjust as needed)
-hoverSound.volume = 0.5;
+hoverSound.volume = 0.85;
 
 // Function to play sound
 function playHoverSound() {

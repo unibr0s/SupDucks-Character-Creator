@@ -245,13 +245,13 @@ button.shrink,
 }
 
 .footer-icon {
-    width: 40px;
-    height: 40px;
+    width: 39px;
+    height: 39px;
     transition: transform 0.2s ease;
 }
 
 .social-footer a:hover .footer-icon {
-    transform: scale(1.2);
+    transform: scale(1.19);
 }
 
 /* Mobile blocker */

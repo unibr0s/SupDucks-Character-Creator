@@ -212,8 +212,8 @@ button.shrink,
 }
 
 .social-icon {
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -228,9 +228,9 @@ button.shrink,
     justify-content: center;
     align-items: center;
     padding: 10px 50px;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
-    gap: 0px;
+    gap: 2px;
 }
 
 .site-footer a {
@@ -242,6 +242,16 @@ button.shrink,
 
 .site-footer a:hover {
     color: darkred;
+}
+
+.footer-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease;
+}
+
+.social-footer a:hover .footer-icon {
+    transform: scale(1.2);
 }
 
 /* Mobile blocker */

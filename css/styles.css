@@ -1,3 +1,4 @@
+/* Base styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,152 +6,138 @@ body {
     height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Stack header and content vertically */
-    transform: scale(0.9); /* Scale down the entire page to 90% of its size */
-    transform-origin: top; /* Ensure scaling starts from the top of the page */
+    flex-direction: column;
+    transform: scale(0.9);
+    transform-origin: top;
 }
 
-/* Character Builder Container */
+/* Layout containers */
 #character-builder {
     display: flex;
-    flex-direction: row; /* Left and right split */
-    height: calc(100vh - 150px); /* Subtract header height */
-    width: 100%; /* Full width */
+    flex-direction: row;
+    height: calc(100vh - 150px);
+    width: 100%;
 }
 
 /* Left Section: Trait Tabs */
 #trait-tabs {
-    flex: 1; /* Take up space on the left side */
-    max-width: 100%; /* Optional: Limit the width for better readability */
+    flex: 1;
+    max-width: 100%;
     max-height: 100%;
-    background-color: transparent; /* Optional: Light background color */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    margin: auto; /* Center the entire tabs container vertically and horizontally */
+    background-color: transparent;
+    overflow-y: auto;
+    margin: auto;
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center align tabs horizontally */
-    justify-content: center; /* Center align tabs vertically */
-    border-radius: 10px; /* Add rounded corners */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 }
 
 /* Right Section: Character Preview */
 #character-preview {
-    flex: 1; /* Take up the right side */
-    max-width: 500px; /* Set a maximum width */
-    max-height: 500px; /* Set a maximum height */
-    width: 100%; /* Ensure it's responsive */
-    aspect-ratio: 1 / 1; /* Force the box to be a square */
-    background-color: lightgray; /* Optional: Background color */
-    display: flex; /* Flexbox for alignment */
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    position: relative; /* Positioning for layered images */
-    margin: 20px; /* Add spacing around the preview */
-    border-radius: 15px; /* Optional: Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow */
+    flex: 1;
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-/* Character Preview Layers (Images) */
-#character-preview img.layer {
-    position: absolute; /* Stack layers on top of each other */
-    width: 100%; /* Make images take the full width of the box */
-    height: 100%; /* Make images take the full height of the box */
-    object-fit: cover; /* Ensure the image covers the box while maintaining proportions */
-    border-radius: 15px; /* Optional: Match preview box rounded corners */
-}
-
-/* Export Button */
-.export-button {
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.export-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Slightly enlarge the button */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
-}
-
+/* Layer handling */
 .layer {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Scale to fit the display box */
-    height: 100%; /* Maintain proportions */
-    object-fit: contain; /* Ensure images fit inside the box without distortion */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .layer:not([src]) {
-    visibility: hidden; /* Hide images without a src attribute */
+    visibility: hidden;
+    display: none;
 }
 
 .layer[src] {
-    visibility: visible; /* Show images with a valid src */
+    visibility: visible;
 }
 
-.trait-selector {
-    margin: 10px 0;
-}
-
-select {
-    padding: 5px;
-    font-size: 16px;
-}
-
+/* Button styles */
 button {
     padding: 10px 20px;
     font-size: 16px;
     margin-top: 20px;
 }
 
-/* Tab Buttons */
-.tab-buttons {
-    display: flex;
-    justify-content: center; /* Center align buttons within the container */
-    flex-wrap: wrap; /* Wrap buttons to the next line if necessary */
-    gap: 10px; /* Add spacing between buttons */
-    width: 100%; /* Ensure buttons take full width */
-    margin-top: 10px; /* Add some space at the top */
-}
-
-/* Tab Content */
-.tab-content {
-    width: 100%; /* Match the width of the container */
-    margin-top: 20px; /* Add space between the buttons and content */
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center align trait grids */
-}
-
-/* Optional Styling for Tab Buttons */
-.tab-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+/* Common button properties */
+.tab-button,
+.export-button,
+#randomize {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.tab-button:hover {
-    background-color: #0056b3;
+    transition: all 0.3s ease;
     color: white;
-    border-color: #007bff;
-    transform: scale(1.05); /* Slightly enlarge the button */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
-.tab-button.active {
+.tab-button,
+.export-button {
     background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+}
+
+#randomize {
+    background-color: red;
+}
+
+/* Button hover effects */
+.tab-button:hover,
+.export-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#randomize:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Shrink animation */
+button.shrink,
+.tab-button.shrink,
+#randomize.shrink,
+#export.shrink,
+.trait-option.shrink {
+    transform: scale(0.95) !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
+/* Tab layout */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.tab-content {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tab-panel {
@@ -163,196 +150,103 @@ button {
     flex-wrap: wrap;
 }
 
-/* Trait Grid */
-/* Ensure the grid layout remains consistent */
-/* Style the grid that contains trait options */
-/* Style the grid container */
+/* Trait grid */
 .trait-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ensure consistent size */
-    gap: 5px; /* Add space between grid items */
-    justify-items: center; /* Center items in the grid */
-    max-width: 900px; /* Limit the grid width for better readability */
-    margin: 0 auto; /* Center the grid container */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 5px;
+    justify-items: center;
+    max-width: 900px;
+    margin: 0 auto;
     cursor: pointer;
 }
 
-/* Style the images */
 .trait-option {
-    width: 100px; /* Ensure consistent image width */
-    height: 100px; /* Ensure consistent image height */
-    object-fit: cover; /* Prevent images from stretching */
-    border-radius: 8px; /* Optional: Rounded corners */
-    border: 2px solid transparent; /* Optional border for better visuals */
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
 }
 
-/* Optional hover effect for images */
 .trait-option:hover {
-    transform: scale(1.1); /* Slight zoom effect */
-}
-
-/* Style the text below images */
-.trait-option p {
-    margin-top: 8px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Header Styling */
-.logo-container {
-    display: flex;
-    flex-direction: column; /* Stack logo and title vertically */
-    align-items: center; /* Center items horizontally */
-    text-align: center;
-    padding: 20px;
-    background-color: white;
-    border-bottom: 2px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Header Styling */
-.header-container {
-    display: flex;
-    flex-direction: column; /* Stack logo, title, and button vertically */
-    align-items: center; /* Center all items horizontally */
-    justify-content: center; /* Center all items vertically */
-    padding: 10px 0; /* Add vertical padding */
-    background-color: white;
-    text-align: center; /* Center-align text */
-}
-
-/* Logo Styling */
-#site-logo {
-    height: 75px; /* Adjust logo size */
-    width: auto; /* Maintain aspect ratio */
-}
-
-/* Heading Styling */
-.logo-container h2 {
-    font-size: 20px; /* Adjust font size for the heading */
-    color: #333; /* Optional: change color */
-    margin: 0; /* Remove extra margin */
-}
-
-
-/* Button Group Styling */
-.button-group {
-    display: flex;
-    gap: 10px; /* Space between buttons */
-    margin-top: 10px; /* Add small space above the buttons */
-}
-
-/* Button Styling */
-#randomize {
-    font-size: 16px;
-    background-color: red; /* Blue button */
-    color: white; /* White text */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-#randomize:hover {
-    background-color: darkred; /* Darker blue on hover */
-    transform: scale(1.05); /* Slightly enlarge the button */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
-}
-
-/* Footer Styling */
-.site-footer {
-    display: flex; /* Arrange items horizontally */
-    justify-content: center; /* Center all content horizontally */
-    align-items: center; /* Center all content vertically */
-    padding: 10px 50px; /* Add vertical padding */
-    font-size: 14px; /* Adjust font size */
-    color: #333; /* Darker text color */
-    gap: 0px; /* Space between "Built by Unibros" and the icon */
-}
-
-.site-footer a {
-    text-decoration: none; /* Remove underline */
-    color: red; /* Red text for the link */
-    font-weight: bold; /* Bold the link */
-    transition: color 0.3s ease; /* Smooth hover effect */
-}
-
-.site-footer a:hover {
-    color: darkred; /* Darker red on hover */
+    transform: scale(1.1);
 }
 
 .trait-option[alt="None"] {
-    opacity: 0.5; /* Make it slightly grayed out */
+    opacity: 0.5;
 }
 
 .trait-option[alt="None"]:hover {
-    opacity: 1; /* Highlight on hover */
+    opacity: 1;
 }
 
-.layer:not([src]) {
-    visibility: hidden; /* Make it invisible */
-    display: none; /* Remove it from the layout */
+/* Header styles */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: white;
+    text-align: center;
 }
 
-/* Social Media Styling */
+#site-logo {
+    height: 75px;
+    width: auto;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Social media */
 .social-media {
     display: flex;
-    justify-content: center; /* Center icons horizontally */
-    gap: 10px; /* Space between icons */
+    justify-content: center;
+    gap: 10px;
 }
 
-/* Social Media Icon Styling */
 .social-icon {
-    width: 24px; /* Icon size */
-    height: 24px; /* Icon size */
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    transition: transform 0.2s ease; /* Smooth hover effect */
+    transition: transform 0.2s ease;
 }
 
 .social-icon:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
+    transform: scale(1.2);
 }
 
-/* Header Container Styling */
-.logo-container {
+/* Footer styles */
+.site-footer {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center all elements horizontally */
-    text-align: center;
-    padding: 10px 0; /* Add vertical padding inside the header */
-    gap: 8px; /* Small gap between elements */
-}
-
-.social-footer {
-    display: flex; /* Arrange icon next to text */
     justify-content: center;
     align-items: center;
+    padding: 10px 50px;
+    font-size: 14px;
+    color: #333;
+    gap: 0px;
 }
 
-.footer-icon {
-    width: 24px; /* Icon size */
-    height: 24px; /* Icon size */
-    margin-left: 10px; /* Space between text and icon */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: transform 0.2s ease; /* Smooth hover effect */
+.site-footer a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-.footer-icon:hover {
-    transform: scale(1.2); /* Slight zoom effect on hover */
+.site-footer a:hover {
+    color: darkred;
 }
 
-/* Main content area to push the footer down */
-main {
-    flex: 1; /* This makes the main content take up all available space */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers the content vertically */
-    align-items: center; /* Centers the content horizontally */
-} 
-
+/* Mobile blocker */
 #mobile-blocker {
-    display: none; /* Default hidden */
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -367,16 +261,13 @@ main {
     color: black;
     text-align: center;
     padding: 20px;
-    font-family: Arial, sans-serif;
 }
 
-/* Make the shrink class more specific */
-button.shrink,
-.tab-button.shrink,
-#randomize.shrink,
-#export.shrink,
-.trait-option.shrink {
-    transform: scale(0.95) !important;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+/* Main content */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

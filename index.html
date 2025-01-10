@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://unibr0s.github.io/SupDucks-Character-Builder/">
+    <!-- <base href="https://unibr0s.github.io/SupDucks-Character-Builder/"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SupDucks Character Builder - Build and customize your SupDucks characters!">
@@ -9,66 +9,6 @@
     <meta name="keywords" content="SupDucks, Character Builder, Customization, NFTs, Artwork">
     <title>SupDucks Character Builder</title>
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column; /* Stack header and content vertically */
-        }
-    
-        #character-builder {
-            display: flex;
-            flex-direction: row; /* Horizontal split */
-            height: calc(100vh - 100px); /* Full height minus logo/header */
-            width: 100%; /* Full width of the screen */
-        }
-    
-        #trait-tabs {
-            flex: 1; /* Take up half the screen */
-            background-color: transparent;
-            overflow-y: auto; /* Enable scrolling if content overflows */
-            padding: 20px;
-        }
-    
-        #character-preview {
-            flex: 1; /* Take up half the screen */
-            height: 100%;
-            width: 100%;
-            background-color: lightgray;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ensure proportional scaling */
-        }
-    
-        .trait-selector {
-            margin: 10px 0;
-        }
-    
-        select {
-            padding: 5px;
-            font-size: 16px;
-        }
-    
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 0px;
-        }
-    </style>
-    
 </head>
 <script>
     function checkScreenSize() {
@@ -111,7 +51,11 @@
     <div id="mobile-blocker" style="display: none;">
         <p>Please use a desktop device for the best experience.</p>
     </div>
+
+    <!-- Audio Element -->
     <audio id="hover-sound" src="Assets/Sounds/Button_Hover.mp3" preload="auto"></audio>
+
+    <!-- Header -->
     <header class="header-container">
         <img src="Assets/Design_Elements/SupDucks Logo.png" alt="SupDucks Logo" id="site-logo">
         <h2>Character Builder</h2>
@@ -129,10 +73,11 @@
         </div>
     </header>
 
+    <!-- Main Character Builder -->
     <div id="character-builder">
-
-          <!-- Left Section: Trait Tabs -->
+        <!-- Left Section: Trait Tabs -->
         <div id="trait-tabs">
+            <!-- Tab Buttons -->
             <div class="tab-buttons">
                 <button class="tab-button active" data-tab="background-tab">Background</button>
                 <button class="tab-button" data-tab="body-tab">Body</button>
@@ -141,11 +86,12 @@
                 <button class="tab-button" data-tab="mouth-tab">Mouth</button>
                 <button class="tab-button" data-tab="eyes-tab">Eyes</button>
             </div>
-        
+
+            <!-- Tab Content -->
             <div class="tab-content">
                 <!-- Background Tab -->
                 <div class="tab-panel active" id="background-tab">
-                    <div class="trait-grid">
+                    <div class="trait-grid background-grid">
                         <img class="trait-option" src="Assets/Background/Ash.png" data-layer="background" data-value="Assets/Background/Ash.png" alt="Ash">
                         <img class="trait-option" src="Assets/Background/Blue.png" data-layer="background" data-value="Assets/Background/Blue.png" alt="Blue">
                         <img class="trait-option" src="Assets/Background/Boardwalk.png" data-layer="background" data-value="Assets/Background/Boardwalk.png" alt="Boardwalk">
@@ -163,7 +109,7 @@
                         <img class="trait-option" src="Assets/Background/YellowOrange.png" data-layer="background" data-value="Assets/Background/YellowOrange.png" alt="YellowOrange">
                     </div>
                 </div>
-        
+
                 <!-- Body Tab -->
                 <div class="tab-panel" id="body-tab">
                     <div class="trait-grid">
@@ -187,7 +133,7 @@
                         <img class="trait-option" src="Assets/Body/Spectrum.png" data-layer="body" data-value="Assets/Body/Spectrum.png" alt="Spectrum">
                     </div>
                 </div>
-        
+
                 <!-- Clothing Tab -->
                 <div class="tab-panel" id="clothing-tab">
                     <div class="trait-grid">
@@ -345,8 +291,8 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Left Section: Trait Tabs -->
+
+        <!-- Right Section: Character Preview -->
         <div id="character-preview">
             <img id="background" class="layer" src="Assets/Design_Elements/Default_Preview.png" alt="Background">
             <img id="body" class="layer" alt="Body">
@@ -357,17 +303,17 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="site-footer">
-        <p>
-            Built by <a href="https://unibros.xyz" target="_blank">Unibros®</a>
-        </p>
+        <p>Built by <a href="https://unibros.xyz" target="_blank">Unibros®</a></p>
         <div class="social-footer">
             <a href="https://x.com/unibr0s" target="_blank">
                 <img src="Assets/Icons/x.svg" alt="X" class="footer-icon">
             </a>
         </div>
     </footer>
-    
+
+    <!-- Scripts -->
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -33,20 +33,38 @@ function setupButtonAnimation(element) {
 // Function to handle trait selection
 function onTraitSelected(layer, value) {
     const layerElement = document.getElementById(layer);
+    const background = document.getElementById('background');
+    
+    // If this is the first trait selection and background shows default preview, clear it
+    if (background && background.src.includes('Default_Preview.png')) {
+        background.src = '';
+        background.style.visibility = 'hidden'; // Hide the element completely
+        background.alt = ''; // Remove alt text
+    }
+    
+    // Handle background selections
+    if (layer === 'background') {
+        if (value === "none") {
+            background.src = "";
+            background.style.visibility = 'hidden';
+            background.alt = '';
+        } else {
+            background.src = value;
+            background.style.visibility = 'visible';
+            background.alt = 'Background';
+        }
+        return;
+    }
+    
+    // Handle other traits
     if (layerElement) {
         if (value === "none") {
             layerElement.src = "";
-            layerElement.style.visibility = "hidden";
+            layerElement.style.visibility = 'hidden';
+            layerElement.alt = '';
         } else {
-            // Add loading error handling
-            layerElement.onerror = () => {
-                layerElement.style.visibility = "hidden";
-                console.log(`Error loading ${layer} image`);
-            };
-            layerElement.onload = () => {
-                layerElement.style.visibility = "visible";
-            };
             layerElement.src = value;
+            layerElement.style.visibility = 'visible';
         }
     }
 }
@@ -196,4 +214,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Handle window resize
+window.addEventListener('resize', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);

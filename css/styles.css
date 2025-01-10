@@ -289,3 +289,24 @@ main {
     height: 75px;
     transition: transform 0.2s ease;
 }
+
+/* Add only this new style, keep all your existing CSS */
+#default-preview-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure it's above background but below other layers */
+}
+
+#default-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#default-preview-container.hidden {
+    display: none !important;
+}

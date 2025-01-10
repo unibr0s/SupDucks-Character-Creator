@@ -156,7 +156,7 @@ button.shrink,
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 5px;
     justify-items: center;
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
     cursor: pointer;
 }
@@ -270,4 +270,22 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Background grid specific */
+.background-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 60px); /* Fixed width column */
+    gap: 20px; /* Increased gap between items */
+    padding: 20px 40px; /* Increased padding */
+    align-items: center;
+    justify-content: center; /* Center the grid */
+    width: fit-content; /* Allow grid to size to content */
+    margin: 0 auto; /* Center in container */
+}
+
+.background-grid .trait-option {
+    width: 75px;
+    height: 75px;
+    transition: transform 0.2s ease;
 }

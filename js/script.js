@@ -67,6 +67,12 @@ function onTraitSelected(layer, value) {
             layerElement.style.visibility = 'visible';
         }
     }
+    
+    // Track the trait selection
+    gtag('event', 'trait_selected', {
+        'event_category': 'customization',
+        'event_label': `${layer}_${value}`
+    });
 }
 
 // Function to check screen size and handle mobile blocker
@@ -216,3 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // Handle window resize
 window.addEventListener('resize', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
+
+// Example of tracking an event when a user exports their character
+document.getElementById('export')?.addEventListener('click', () => {
+    gtag('event', 'character_export', {
+        'event_category': 'engagement',
+        'event_label': 'character_created'
+    });
+});

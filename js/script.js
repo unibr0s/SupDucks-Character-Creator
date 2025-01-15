@@ -75,35 +75,6 @@ function onTraitSelected(layer, value) {
     });
 }
 
-// Function to check screen size and handle mobile blocker
-function checkScreenSize() {
-    const mobileBlocker = document.getElementById('mobile-blocker');
-    const content = document.getElementById('character-builder');
-    const footer = document.querySelector('.site-footer');
-    const isMobile = window.innerWidth <= 1024;
-
-    mobileBlocker.style.display = isMobile ? 'flex' : 'none';
-    content.style.display = isMobile ? 'none' : 'flex';
-    footer.style.display = isMobile ? 'none' : 'flex';
-
-    if (isMobile) {
-        Object.assign(mobileBlocker.style, {
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'white',
-            zIndex: '9999',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            fontSize: '18px',
-            color: 'black'
-        });
-    }
-}
-
 // Function to handle character randomization
 function randomizeCharacter() {
     const layers = ['background', 'body', 'clothing', 'mouth', 'hat', 'eyes'];
@@ -111,14 +82,18 @@ function randomizeCharacter() {
     layers.forEach(layer => {
         const options = document.querySelectorAll(`.trait-option[data-layer="${layer}"]`);
         if (options.length > 0) {
-            const randomOption = options[Math.floor(Math.random() * options.length)];
-            const value = randomOption.getAttribute('data-value');
+            // Filter out the "none" option for background layer
+            let validOptions = Array.from(options);
+            if (layer === 'background') {
+                validOptions = validOptions.filter(option => option.getAttribute('data-value') !== 'none');
+            }
             
-            // Add error handling for image loading
-            if (value === "none") {
-                onTraitSelected(layer, value);
-            } else {
-                // Create a temporary image to verify it loads correctly
+            // Only proceed if we have valid options
+            if (validOptions.length > 0) {
+                const randomOption = validOptions[Math.floor(Math.random() * validOptions.length)];
+                const value = randomOption.getAttribute('data-value');
+                
+                // Add error handling for image loading
                 const tempImg = new Image();
                 tempImg.onload = () => {
                     onTraitSelected(layer, value);
@@ -171,6 +146,12 @@ function debounce(func, wait) {
     };
 }
 
+// Instead, add this function to handle responsive layout adjustments if needed
+function handleResponsiveLayout() {
+    const isMobile = window.innerWidth <= 1024;
+    // Add any specific JavaScript handling for mobile if needed
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Setup animations for all interactive elements
@@ -220,8 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Handle window resize
-window.addEventListener('resize', checkScreenSize);
-window.addEventListener('resize', checkScreenSize);
+window.addEventListener('resize', handleResponsiveLayout);
+window.addEventListener('resize', handleResponsiveLayout);
 
 // Example of tracking an event when a user exports their character
 document.getElementById('export')?.addEventListener('click', () => {
@@ -230,3 +211,24 @@ document.getElementById('export')?.addEventListener('click', () => {
         'event_label': 'character_created'
     });
 });
+
+function updateCharacterLayer(layer, value) {
+    const layerElement = document.getElementById(layer);
+    if (!layerElement) return;
+
+    if (value === "none") {
+        // For background, use a transparent background
+        if (layer === "background") {
+            layerElement.src = "Assets/Design_Elements/None.png";
+            layerElement.style.opacity = "0"; // Make it invisible
+        } else {
+            // For other layers (like clothing), just hide the layer
+            layerElement.style.display = "none";
+        }
+    } else {
+        // Show the layer with the selected trait
+        layerElement.style.display = "block";
+        layerElement.style.opacity = "1";
+        layerElement.src = value;
+    }
+}

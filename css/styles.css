@@ -74,7 +74,7 @@ body {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 /* Common button properties */
@@ -201,7 +201,6 @@ button.shrink,
 .button-group {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
 }
 
 /* Social media */
@@ -209,6 +208,7 @@ button.shrink,
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin-bottom: 5px;
 }
 
 .social-icon {
@@ -254,32 +254,187 @@ button.shrink,
     transform: scale(1.19);
 }
 
-/* Mobile blocker */
-#mobile-blocker {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    z-index: 9999;
-    font-size: 18px;
-    color: black;
-    text-align: center;
-    padding: 20px;
+/* Mobile styles - Only apply when screen width is 1024px or less */
+@media screen and (max-width: 1024px) {
+    body {
+        transform: none; /* Remove the scale transform for mobile */
+        height: auto; /* Allow scrolling */
+    }
+
+    #character-builder {
+        flex-direction: column; /* Stack elements vertically */
+        height: auto;
+        padding: 10px;
+        display: flex;
+    }
+
+    /* Header adjustments */
+    .header-container {
+        flex-direction: column;
+        padding: 10px 0; /* Remove horizontal padding */
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #site-logo {
+        max-width: 200px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto; /* Center logo */
+    }
+
+    /* Preview section */
+    #character-preview {
+        order: 1;
+        width: 100%;
+        max-width: 350px;
+        margin: 20px auto; /* Center horizontally */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%); /* Perfect centering */
+    }
+
+    /* Trait tabs */
+    #trait-tabs {
+        order: 2; /* This moves it below the preview */
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px; /* Add horizontal padding */
+    }
+
+    .tab-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        width: 100%;
+        padding: 5px 10px; /* Add some padding to the buttons container */
+    }
+
+    .tab-button {
+        padding: 8px;
+        font-size: 14px;
+        white-space: nowrap; /* Prevent text wrapping */
+        width: 100%; /* Fill grid cell */
+        min-width: 0; /* Allow shrinking */
+    }
+
+    /* Trait grid adjustments */
+    .trait-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Show 4 items per row */
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    .trait-grid .trait-option {
+        width: 100%; /* Make items fill their grid cell */
+        height: auto; /* Maintain aspect ratio */
+        aspect-ratio: 1 / 1; /* Keep items square */
+        object-fit: cover;
+    }
+
+    /* Button group */
+    .button-group {
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Footer adjustments */
+    .site-footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0; /* Remove horizontal padding */
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    /* Specific adjustment for background grid */
+    .background-grid {
+        grid-template-columns: repeat(4, 1fr); /* Match other grids */
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .background-grid .trait-option {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* Ensure tab content doesn't cause horizontal scroll */
+    .tab-content {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .tab-panel {
+        width: 100%;
+        padding: 10px 15px; /* Add horizontal padding to trait panels */
+    }
+
+    /* Reduce heading text size */
+    .header-container h2 {
+        font-size: 1.0rem; /* Smaller text for "Character Creator" */
+        margin: 5px 0;
+    }
+
+    /* Adjust button sizes */
+    .button-group {
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    #randomize,
+    .export-button {
+        padding: 8px 16px; /* Reduced padding */
+        font-size: 14px; /* Smaller font */
+    }
+
+    /* Adjust header spacing */
+    .header-container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px; /* Reduce gap between elements */
+    }
+
+    .social-media {
+        margin-bottom: 5px; /* Bring buttons closer to social icons */
+    }
 }
 
-/* Main content */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 360px) {
+    #character-preview {
+        max-width: 280px;
+    }
+
+    .trait-grid, .background-grid {
+        grid-template-columns: repeat(3, 1fr); /* Show 3 items per row on very small screens */
+    }
+
+    .trait-grid .trait-option {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 /* Background grid specific */

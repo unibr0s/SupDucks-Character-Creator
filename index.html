@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://unibr0s.github.io/SupDucks-Character-Creator/">
+    <!-- <base href="https://unibr0s.github.io/SupDucks-Character-Creator/"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SupDucks Character Builder - Build and customize your SupDucks characters!">
@@ -42,7 +42,7 @@
         gtag('config', 'G-WP3QHEB9KV');
     </script>
 </head>
-<script>
+<!-- <script>
     function checkScreenSize() {
         const mobileBlocker = document.getElementById('mobile-blocker');
         const content = document.getElementById('character-builder');
@@ -71,14 +71,14 @@
             content.style.display = 'flex'; // Show main content
             footer.style.display = 'flex';
         }
-    }
+    } 
 
     // Run on page load
     window.onload = checkScreenSize;
 
     // Run whenever the window is resized
     window.onresize = checkScreenSize;
-</script>
+</script> -->
 <body>
     <div id="mobile-blocker" style="display: none;">
         <p>Please use a desktop device for the best experience.</p>
@@ -124,6 +124,7 @@
                 <!-- Background Tab -->
                 <div class="tab-panel active" id="background-tab">
                     <div class="trait-grid background-grid">
+                        <img class="trait-option" src="Assets/Design_Elements/None.png" data-layer="background" data-value="none" alt="None">
                         <img class="trait-option" src="Assets/Background/Ash.png" data-layer="background" data-value="Assets/Background/Ash.png" alt="Ash">
                         <img class="trait-option" src="Assets/Background/Blue.png" data-layer="background" data-value="Assets/Background/Blue.png" alt="Blue">
                         <img class="trait-option" src="Assets/Background/Boardwalk.png" data-layer="background" data-value="Assets/Background/Boardwalk.png" alt="Boardwalk">

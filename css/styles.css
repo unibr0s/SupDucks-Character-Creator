@@ -259,6 +259,8 @@ button.shrink,
     body {
         transform: none; /* Remove the scale transform for mobile */
         height: auto; /* Allow scrolling */
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     #character-builder {
